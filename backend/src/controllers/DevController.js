@@ -5,16 +5,21 @@ module.exports = {
     async index(req, res) {
         const { user } = req.headers;
 
-        const loggedDev = await Dev.findById(user);
+        const loggedDev = await Dev.findById(user).catch(err => {return console.log(`Erro ao encontrar usuário: ${err.message}`)});
 
-        const users = await Dev.find({
-            $and: [
-                { _id: { $ne: user } },
-                { _id: { $nin: loggedDev.likes} },
-                { _id: { $nin: loggedDev.dislikes} },
-            ],
-        });
-        return res.json(users);
+        if(loggedDev){
+            const users = await Dev.find({
+                $and: [
+                    { _id: { $ne: user } },
+                    { _id: { $nin: loggedDev.likes} },
+                    { _id: { $nin: loggedDev.dislikes} },
+                ],
+            });
+
+            return res.json(users);
+        }else{
+            return res.json({Erro: 'Usuário inválido ou não autorizado!'})
+        }
     },
 
     async store(req, res) {
