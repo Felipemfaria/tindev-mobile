@@ -33,11 +33,13 @@ export default function Login({navigation}) {
   async function handleLogin() {
     const response = await api.post('/devs', {username: user});
 
-    const {_id} = response.data;
+    if (!response.data.message) {
+      const {_id} = response.data;
 
-    await AsyncStorage.setItem('user', _id);
+      await AsyncStorage.setItem('user', _id);
 
-    navigation.navigate('Main', {_id});
+      navigation.navigate('Main', {user: _id});
+    }
   }
 
   return (
