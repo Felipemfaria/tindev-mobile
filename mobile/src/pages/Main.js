@@ -117,4 +117,42 @@ const styles = StyleSheet.create({
       height: 2,
     },
   },
+  matchContainer: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  matchImage: {
+    height: 60,
+    resizeMode: 'contain',
+  },
+  matchAvatar: {
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    borderWidth: 5,
+    borderColor: '#FFF',
+    marginVertical: 30,
+  },
+  matchName: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#FFF',
+  },
+  matchBio: {
+    marginTop: 10,
+    fontSize: 16,
+    color: 'rgba(255,255,255, 0.8)',
+    lineHeight: 24,
+    textAlign: 'center',
+    paddingHorizontal: 30,
+  },
+  closeMatch: {
+    fontSize: 16,
+    color: 'rgba(255,255,255, 0.8)',
+    textAlign: 'center',
+    marginTop: 30,
+    fontWeight: 'bold',
+  },
 });
